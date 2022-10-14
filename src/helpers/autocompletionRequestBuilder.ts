@@ -17,7 +17,7 @@ export default (
   }
 
   if (bounds) {
-    res.bounds = Array.isArray(bounds)  ? new google.maps.LatLngBounds(...bounds) : new google.maps.LatLngBounds(bounds);
+    res.bounds = Array.isArray(bounds)  ? new google.maps.LatLngBounds(bounds[0], bounds[1]) : bounds ;
   }
 
   if (location) {
