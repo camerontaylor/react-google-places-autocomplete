@@ -17,7 +17,7 @@ export default (
   }
 
   if (bounds) {
-    res.bounds = new google.maps.LatLngBounds(...bounds);
+    res.bounds = new google.maps.LatLngBounds(bounds);
   }
 
   if (location) {
