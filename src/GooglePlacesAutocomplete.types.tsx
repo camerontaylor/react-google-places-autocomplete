@@ -1,5 +1,6 @@
 import { LoaderOptions } from '@googlemaps/js-api-loader';
 import { Props, OptionTypeBase } from 'react-select';
+import LatLngLiteral = google.maps.LatLngLiteral;
 
 export type GooglePlacesAutocompleteHandle = {
   getSessionToken: () => google.maps.places.AutocompleteSessionToken | undefined;
@@ -12,7 +13,7 @@ export interface LatLng {
 }
 
 export interface AutocompletionRequest {
-  bounds?: [LatLng, LatLng];
+  bounds?: [LatLng | LatLngLiteral, LatLng | LatLngLiteral] | google.maps.LatLngBounds;
   componentRestrictions?: { country: string | string[] };
   location?: LatLng;
   offset?: number;
