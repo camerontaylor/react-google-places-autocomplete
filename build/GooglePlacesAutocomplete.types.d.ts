@@ -20,10 +20,11 @@ export interface AutocompletionRequest {
     radius?: number;
     types?: string[];
 }
-export default interface GooglePlacesAutocompleteProps {
+export interface GooglePlacesAutocompleteProps {
     apiKey?: string;
     apiOptions?: Partial<LoaderOptions>;
     autocompletionRequest?: AutocompletionRequest;
+    filter?: (prediction: google.maps.places.AutocompletePrediction) => boolean;
     debounce?: number;
     minLengthAutocomplete?: number;
     onLoadFailed?: (error: Error) => void;

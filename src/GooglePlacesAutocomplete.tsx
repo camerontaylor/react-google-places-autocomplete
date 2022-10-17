@@ -2,7 +2,8 @@ import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'rea
 import AsyncSelect from 'react-select/async';
 import { OptionsType, OptionTypeBase } from 'react-select';
 import { useDebouncedCallback } from 'use-debounce';
-import GooglePlacesAutocompleteProps, {
+import  {
+  GooglePlacesAutocompleteProps,
   AutocompletionRequest,
   GooglePlacesAutocompleteHandle,
 } from './GooglePlacesAutocomplete.types';
@@ -16,6 +17,7 @@ const GooglePlacesAutocomplete: React.ForwardRefRenderFunction<GooglePlacesAutoc
   debounce = 300,
   minLengthAutocomplete = 0,
   selectProps = {},
+    filter,
   onLoadFailed = console.error,
   withSessionToken = false,
 } : GooglePlacesAutocompleteProps, ref) : React.ReactElement => {
@@ -33,7 +35,12 @@ const GooglePlacesAutocomplete: React.ForwardRefRenderFunction<GooglePlacesAutoc
         value,
         withSessionToken && sessionToken,
       ), (suggestions) => {
-        cb((suggestions || []).map(suggestion => ({ label: suggestion.description, value: suggestion })));
+        suggestions = suggestions || [];
+        if(filter) {
+          suggestions = suggestions.filter(filter);
+        }
+
+        cb(suggestions.map(suggestion => ({ label: suggestion.description, value: suggestion })));
       },
     );
   }, debounce);
