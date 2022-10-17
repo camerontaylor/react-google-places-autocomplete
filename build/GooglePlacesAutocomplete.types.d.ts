@@ -15,6 +15,7 @@ export interface AutocompletionRequest {
     componentRestrictions?: {
         country: string | string[];
     };
+    input?: string;
     location?: LatLng;
     offset?: number;
     radius?: number;
@@ -23,7 +24,9 @@ export interface AutocompletionRequest {
 export interface GooglePlacesAutocompleteProps {
     apiKey?: string;
     apiOptions?: Partial<LoaderOptions>;
-    autocompletionRequest?: AutocompletionRequest | ((value: string) => AutocompletionRequest);
+    autocompletionRequest?: AutocompletionRequest | ((value: string) => AutocompletionRequest & {
+        input?: string;
+    });
     filter?: (prediction: google.maps.places.AutocompletePrediction) => boolean;
     debounce?: number;
     minLengthAutocomplete?: number;

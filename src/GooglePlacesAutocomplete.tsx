@@ -35,7 +35,7 @@ const GooglePlacesAutocomplete: React.ForwardRefRenderFunction<GooglePlacesAutoc
     placesService.getPlacePredictions(
       autocompletionRequestBuilder(
         autocompletionReq,
-        value,
+          autocompletionReq.input || value,
         withSessionToken && sessionToken,
       ), (suggestions) => {
         suggestions = suggestions || [];
