@@ -27,7 +27,10 @@ const GooglePlacesAutocomplete: React.ForwardRefRenderFunction<GooglePlacesAutoc
     if (!placesService) return cb([]);
     if (value.length < minLengthAutocomplete) return cb([]);
 
-    const autocompletionReq: AutocompletionRequest = { ...autocompletionRequest };
+
+    const autocompletionReq: AutocompletionRequest = typeof autocompletionRequest == 'function' ? autocompletionRequest(value) : { ...autocompletionRequest };
+
+
 
     placesService.getPlacePredictions(
       autocompletionRequestBuilder(

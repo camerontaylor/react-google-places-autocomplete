@@ -24,7 +24,7 @@ export interface AutocompletionRequest {
 export interface GooglePlacesAutocompleteProps {
   apiKey?: string;
   apiOptions?: Partial<LoaderOptions>;
-  autocompletionRequest?: AutocompletionRequest;
+  autocompletionRequest?: AutocompletionRequest | ((value: string) => AutocompletionRequest);
   filter?: (prediction: google.maps.places.AutocompletePrediction) => boolean;
   debounce?: number;
   minLengthAutocomplete?: number;
